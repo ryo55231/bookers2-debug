@@ -1,6 +1,10 @@
 <h1>Follow Users</h1>
+<% if @users.exists? %>
 <table class='table'>
   <tbody>
    <%= render 'users/index', users: @users %>
   </tbody>
+  <% else %>
+  <p>ユーザーはいません</p>
+<% end %>
 </table>

@@ -24,20 +24,7 @@ class UsersController < ApplicationController
     end
 
   end
-  # 1. followメソッド　＝　フォローする
-  def follow(user_id)
-   follower.create(followed_id: user_id)
-  end
-
-  # 2. unfollowメソッド　＝　フォローを外す
-  def unfollow(user_id)
-   follower.find_by(followed_id: user_id).destroy
-  end
-
-  # 3. followingメソッド　＝　既にフォローしているかの確認
-  def following?(user)
-   following_user.include?(user)
-  end
+  
   private
 
   def user_params

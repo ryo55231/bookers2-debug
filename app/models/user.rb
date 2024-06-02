@@ -38,6 +38,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   # 6/2 ここからUser検索のモデルを追加 ※変数ではなく空のモデルとして入れるとのこと
+    # 更にconsent methodの定義をつける→コントローラで変数として代入する
    def self.search_for(content, method)
     if method == 'perfect'
       User.where(name: content)

@@ -1,3 +1,5 @@
+      <!--6/2 @modelはUserかどうか判定し結果を出す　 -->
+      <!--6/2 @recordsの変数⇒@modelと@methodが入っており2つの変数でモデルの定義で判定-->
 <% if @model == 'user' %>
 	<h3>Users search for "<%= @content %>"</h3>
   <%= render 'users/index', users: @records %>

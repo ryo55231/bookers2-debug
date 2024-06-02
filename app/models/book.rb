@@ -15,6 +15,7 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
    # 6/2 ここからBook検索のモデルを追加 ※変数ではなく空のモデルとして入れるとのこと
+    # 更にconsent methodの定義をつける→コントローラで変数として代入する
   def self.search_for(content, method)
     if method == 'perfect'
       Book.where(title: content)

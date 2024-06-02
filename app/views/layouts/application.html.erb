@@ -13,6 +13,11 @@
     <%= render 'layouts/header' %>
       <main>
         <p id="notice"><%= notice %></p>
+           <!-- 6/2に追加したヘッダー下の検索窓 -->
+       <div class="d-flex justify-content-center mb-2">
+          <%= render 'searches/form' %>
+        </div>
+           <!-- ここまで追加 -->
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     end
   resources :groups do      #ここ！
     get "join" => "groups#join"
+  resources :group_users, only: [:create, :destroy]
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
    end
   resources :users, only: [:index,:show,:edit,:update] do
       resource :relationships, only: [:create, :destroy]

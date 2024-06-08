@@ -49,6 +49,20 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 #6/6ここまで追記
+
+#6/8ここからメール送信機能追記
+def new_mail
+  @group = Group.find(params[:group_id])
+end
+
+def send_mail
+  @group = Group.find(params[:group_id])
+  group_users = @group.users
+  @mail_title = params[:mail_title]
+  @mail_content = params[:mail_content]
+  ContactMailer.send_mail(@mail_title, @mail_content,group_users).deliver
+end
+#6/8ここまでメール送信機能追記
   private
 
   def group_params

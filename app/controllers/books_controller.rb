@@ -5,17 +5,8 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    #7/16新着順、古い順、評価順になる記述
-   if params[:latest]
-     @books = Book.latest
-   elsif params[:old]
-     @books = Book.old
-   elsif params[:star_count]
-     @books = Book.star_count
-   else
-     @books = Book.all
-   end
-   #7/16新着順etcここまで
+    #7/16ソート機能のためにorder(params[:sort])を
+    @books = Book.all.order(params[:sort])
   end
 
   def show

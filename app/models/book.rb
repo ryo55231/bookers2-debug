@@ -11,14 +11,12 @@ class Book < ApplicationRecord
     end
     image
   end
-  scope :latest, -> {order(created_at: :desc)}
-  scope :old, -> {order(created_at: :asc)}
-  scope :star_count, -> {order(star: :desc)}
+  
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
    # 6/2 ここからBook検索のモデルを追加 ※変数ではなく空のモデルとして入れるとのこと
-    # 更にconsent methodの定義をつける→コントローラで変数として代入する
+    # 更にconsent methodの定義をつける→コントローラで変数として
   def self.search_for(content, method)
     if method == 'perfect'
       Book.where(title: content)

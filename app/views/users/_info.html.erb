@@ -17,10 +17,17 @@
 	  <th><%= link_to user.followers.count, user_followers_path(user) %></th>
   </tr>
 </table>
-
+  <%# 6/8ゲストログイン時に編集ボタン表示させない記述追加 6/11なぜかボタン２つでてくる%>
+<% if user.email != "guest@example.com" %>
+<!--<div class="row">-->
+<!--  %= link_to "",edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>-->
+<!--</div>-->
+<!--% end %>-->
+  <%# 6/8ここまで %>
 <div class='row'>
   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
+   <% end %>
   <% end %>
    <% if current_user != user %>
           <% if current_user.following?(user) %>

@@ -27,6 +27,9 @@
       </td>
       <!--ここまで-->
     <td>コメント件数：<%= @book.book_comments.count %></td>
+     <!--6/9評価スターの部分テンプレート-->   
+    <td><%= render "books/static_rate", book: @book %></td>
+     <!--6/9ここまで-->
         </tr>
       </table>
       <table>

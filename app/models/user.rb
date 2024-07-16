@@ -54,4 +54,14 @@ class User < ApplicationRecord
       # 6/2 ここまで追加
     end
    end
+   # 6/8 ゲストログインのための記述
+   GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+  # 6/8 ゲストログイン記述ここまで
 end

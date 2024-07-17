@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
 
 
@@ -9,8 +10,8 @@ class BooksController < ApplicationController
     # @books = Book.all.order(params[:sort])
         to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
-    @books = Book.all.sort {|a,b| 
-      b.favorites.where(created_at: from...to).size <=> 
+    @books = Book.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
       a.favorites.where(created_at: from...to).size
     }
   end
@@ -18,12 +19,10 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    unless ReadCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.read_counts.create(book_id: @book.id)
+    end
     @book_comment = BookComment.new
-        read_count = ReadCount.new(book_id: @book.id, user_id: current_user.id)
-    #ReadCountを新しく作成し、book_idに取得してきた本のid、user_idにcurrent_user = つまり自分のidを入力
-    read_count.save
-    #上２行を纏めて書くとこちら
-    current_user.read_counts.create(book_id: @book.id)#createはsave不要
   end
 
   def create
@@ -63,6 +62,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star,:tag)
   end
 end

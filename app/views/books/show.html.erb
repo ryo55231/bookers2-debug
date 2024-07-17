@@ -22,7 +22,7 @@
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
       <!--いいねの部分テンプレート-->
-      <td class="favorite-btn">
+      <td id="favorite-btn-<%= @book.id %>">
       <%= render "favorites/favorite-btn", book: @book %>
       </td>
       <!--ここまで-->

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
  end
+  resources :chats, only: [:show, :create]
  get '/search', to: 'searches#search'
  #6/8ゲストユーザーログインのルート記述
     devise_scope :user do

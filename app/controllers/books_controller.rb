@@ -4,16 +4,15 @@ class BooksController < ApplicationController
 
 
   def index
-    
+    @book = Book.new
     #7/16ソート機能のためにorder(params[:sort])を
-    to  = Time.current.at_end_of_day
+    # @books = Book.all.order(params[:sort])
+        to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @books = Book.all.sort {|a,b| 
       b.favorites.where(created_at: from...to).size <=> 
       a.favorites.where(created_at: from...to).size
     }
-    #.order(params[:sort])
-    @book = Book.new
   end
 
   def show

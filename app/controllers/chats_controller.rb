@@ -5,19 +5,16 @@ class ChatsController < ApplicationController
     @user = User.find(params[:id])#① 送られてきたidでUserを検索
     rooms = current_user.user_rooms.pluck(:room_id) #② current_userの持つroom_idを取得
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms) #③ ①と②を用いて合致するUserRoomが有るか探す
-    if user_rooms.nil? #　③がnil、つまり見つからなかった場合
-      chat_room = Room.new #　新しくRoomを作成
-      chat_room.save
-      UserRoom.create(user_id: current_user.id, room_id: chat_room.id)
-      UserRoom.create(user_id: @user.id, room_id: chat_room.id)
-      #　新しくUserRoomを作成(createは保存も同時に行われるのでsave不要)
+    unless user_rooms.nil?
+      @room = user_rooms.room
     else
-      chat_room = user_rooms.room #user_roomのroomの情報を抜き出す ＝ roomのidを取得 
-      #roomはuserモデルで記載したhas_many :room, through: :user_rooms のroom
+      @room = Room.new
+      @room.save
+      UserRoom.create(user_id: current_user.id, room_id: @room.id)
+      UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
-    @chats = @room.chats #roomのidに合致するchatの内容を取得する
-    #chatsはuserモデルで記載したhas_many :chats　のchats
-    @chat = Chat.new(room_id: chat_room.id) #空のインスタンスの作成
+    @chats = @room.chats
+    @chat = Chat.new(room_id: @room.id)
   end
 
   def create

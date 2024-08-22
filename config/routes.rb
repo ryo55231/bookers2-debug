@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    #8/22指定した日のカレンダー記録(投稿数)を表示
+    get "posts_on_date" => "users#posts_on_date"
  end
   resources :chats, only: [:show, :create]
  get '/search', to: 'searches#search'

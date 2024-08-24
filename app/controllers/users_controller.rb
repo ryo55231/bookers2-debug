@@ -30,19 +30,19 @@ class UsersController < ApplicationController
     end
 
   end
-  
-  def posts_on_date
+
+  def daily_posts
   # リクエストの中からユーザーIDを取得し、データベースからユーザー情報を取得
-  user = User.includes(:books).find(params[:user_id])
+  user = User.find(params[:user_id])
 
   # リクエストの中から指定された日付を取得し、日付オブジェクトに変換
-  date = Date.parse(params[:created_at])
+  #date = Date.parse(params[:created_at])
 
   # ユーザーが指定した日に投稿した本（books）をデータベースから検索
-  @books = user.books.where(created_at: date.all_day)
+  @books = user.books.where(created_at: params[:created_at].to_date.all_day)
 
-  # 検索結果を表示するためのビュー（posts_on_date_form）にデータを送る
-  render :posts_on_date_form
+  # 検索結果を表示するためのビューにデータを送る
+  render :daily_posts_form
   end
 
   private

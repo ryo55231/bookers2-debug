@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :book_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-  resources :groups do      #ここ！
+  resources :groups do      #グループチャットのルート記述
     get "join" => "groups#join"
   resources :group_users, only: [:create, :destroy]
     get "new/mail" => "groups#new_mail"

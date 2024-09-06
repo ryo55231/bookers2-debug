@@ -7,6 +7,9 @@ class Book < ApplicationRecord
     has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
     has_many :read_counts, dependent: :destroy
     
+    has_many :notifications, as: :notifiable, dependent: :destroy 
+    #9/6 通知機能を関連付ける追記
+    
     validates :tag,presence:true
   
   def get_image

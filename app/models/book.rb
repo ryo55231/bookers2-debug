@@ -50,6 +50,7 @@ class Book < ApplicationRecord
          # 6/2 ここまで
     end
   end
+
   #9/7通知機能　コールバック実装のための記述
     after_create do
     user.followers.each do |follower|
@@ -57,5 +58,6 @@ class Book < ApplicationRecord
     end
   end
   #9/7ここまで
+
 end
 

@@ -31,9 +31,9 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
     has_one_attached :profile_image
-    
+  #9/6通知機能との関連付けの追記  
   has_many :notifications, dependent: :destroy
-  #9/6通知機能との関連付けの追記
+  #9/6ここまで
   
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'

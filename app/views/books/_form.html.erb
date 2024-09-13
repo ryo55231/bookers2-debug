@@ -11,6 +11,7 @@
     <%= f.label :Tag %>
     <%= f.text_field :tag, class: 'form-control book_tag' %>
   </div>
+  
    <!--6/9評価スターの表記追加-->
   <% if book.id.nil? %>
     <div class="form-group" id="star">
@@ -38,9 +39,8 @@
       <%= render "static_rate", book: book %>
     </div>
   <% end %>
-  
-
      <!--6/9評価スターの表記追加ここまで-->
+     
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>

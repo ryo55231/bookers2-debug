@@ -74,4 +74,5 @@ class User < ApplicationRecord
     end
   end
   # 6/8 ゲストログイン記述ここまで
+  
 end

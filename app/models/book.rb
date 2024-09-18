@@ -36,7 +36,6 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
    # 6/2 ここからBook検索のモデルを追加 ※変数ではなく空のモデルとして入れるとのこと
  
     # 更にconsent methodの定義をつける→コントローラで変数として

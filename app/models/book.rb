@@ -19,6 +19,8 @@ class Book < ApplicationRecord
     end
     image
   end
+  
+  
   #8/20投稿数の前日比 / 先週比を表示するための記述
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   #8/21chart.jsを使って過去7日分の投稿数をグラフ化するための記述

@@ -13,5 +13,6 @@ class Favorite < ApplicationRecord
   end
   #9/9ここまで
   
+  
   validates :user_id, uniqueness: {scope: :book_id}
 end
